@@ -1,0 +1,114 @@
+CCS PCM C Compiler, Version 5.076, 56587               24-feb.-22 10:09
+
+               Filename:   E:\Martin Hdez\Desktop\CCS 16F\877A\Práctica 2\Push Button.lst
+
+               ROM used:   40 words (0%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           5 (1%) worst case
+               Stack used: 0 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   00B
+0003:  NOP
+.................... /* 
+....................    AUTOR: MICROSIDE TECHNOLOGY S.A. DE C.V. 
+....................    FECHA: JUNIO 2019 
+.................... */ 
+....................  
+.................... /* 
+.................... --------------------------------------------------------------------------- 
+....................  Implementar el control de encendido y apagado de un LED mediante 
+....................  un botón pulsador. 
+.................... --------------------------------------------------------------------------- 
+.................... */ 
+....................  
+.................... #include <16F877A.h>                            //Incluye el microcontrolador con el que se va a trabajar  
+.................... //////////// Standard Header file for the PIC16F877A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2014 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F877A 
+....................  
+.................... #list 
+....................  
+.................... #use delay(clock=20Mhz, crystal)                //Tipo de oscilador y frecuencia dependiendo del microcontrolador  
+....................  
+.................... #define LED PIN_A1                              //Asigna el pin A1 al LED del X-TRAINER 
+.................... #define BOTON PIN_A2                            //Asigna el pin A2 al boton BOOT del X-TRAINER 
+....................  
+.................... void SisInit (void) 
+....................  
+....................  { 
+....................      set_tris_a (0b11111101);                   //Pin A1 como salida 
+0004:  MOVLW  FD
+0005:  BSF    03.5
+0006:  MOVWF  05
+0007:  BCF    03.5
+0008:  BCF    0A.3
+0009:  BCF    0A.4
+000A:  GOTO   018 (RETURN)
+....................  } 
+....................  
+.................... void main (void) 
+000B:  MOVF   03,W
+000C:  ANDLW  1F
+000D:  MOVWF  03
+000E:  BSF    03.5
+000F:  BSF    1F.0
+0010:  BSF    1F.1
+0011:  BSF    1F.2
+0012:  BCF    1F.3
+0013:  MOVLW  07
+0014:  MOVWF  1C
+0015:  BCF    03.7
+....................  { 
+....................    SisInit (); 
+0016:  BCF    03.5
+0017:  GOTO   004
+....................  
+....................    while (1)                                     //Ciclo repetitivo 
+....................     
+....................    { 
+....................     if (0 == input (BOTON))                      //Lee el estado del boton 
+0018:  BSF    03.5
+0019:  BSF    05.2
+001A:  BCF    03.5
+001B:  BTFSC  05.2
+001C:  GOTO   022
+....................       { 
+....................        output_high (LED);                        //Si se presiona el boton enciende el LED 
+001D:  BSF    03.5
+001E:  BCF    05.1
+001F:  BCF    03.5
+0020:  BSF    05.1
+....................       } 
+0021:  GOTO   026
+....................  
+....................      else 
+....................  
+....................      { 
+....................       output_low (LED);                          //De lo contrario el LED se apaga 
+0022:  BSF    03.5
+0023:  BCF    05.1
+0024:  BCF    03.5
+0025:  BCF    05.1
+....................      } 
+0026:  GOTO   018
+....................  
+....................    } 
+....................  
+.................... } 
+0027:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F72   HS NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT
