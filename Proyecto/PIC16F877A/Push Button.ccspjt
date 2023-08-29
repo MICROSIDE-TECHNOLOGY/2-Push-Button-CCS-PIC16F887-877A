@@ -1,7 +1,7 @@
 [PROJECT]
 Target=Push Button.hex
 Processor_Text=PIC16F877A
-CCSVersion=5.076
+CCSVersion=5.115d
 Compiler=PCM
 [Target Data]
 FileList=Push Button.c
@@ -9,15 +9,35 @@ FileList=Push Button.c
 Type=4
 [mru-list]
 1=Push Button.c
-[Units]
-Count=1
-1=Push Button (main)
 
 [defines]
-buildcount=1
+buildcount=3
 
 [ProjectLog]
-Days=1
+Days=2
 D1=24-02-2022
 D1_L=1
 D1_L1=[36612]Project Closed.
+D2=29-08-2023
+D2_L=6
+D2_L1=[50039]Project Opened.
+D2_L2=[50055]Started Editing.
+D2_L3=[50214]Stopped Editing.
+TotalEdit=3
+TotalDebug=0
+D2_E=3
+D2_D=0
+D2_L4=[50214]Project Closed.
+D2_L5=[50449]Project Opened.
+D2_L6=[50455]Started Editing.
+
+[fileformats]
+forcecoff=0
+
+[Opened Files]
+1=Push Button.c
+t1=1
+Count=1
+[Units]
+Count=1
+1=Push Button (main)

@@ -1,4 +1,4 @@
 青Push Button
-   青MAIN  0/29  Ram=0
+   青main  0/29  Ram=0
       団@cinit1  (Inline)  Ram=0
-      青SisInit  0/7  Ram=0
+      青@cinit2  (Inline)  Ram=0
